@@ -52,10 +52,23 @@ UserSchema.pre('save', async function (done) {
   done()
 })
 
+// Final solution for TS and mongoose to work along
+// Here only User is exported and all the type checks are done here
+
 UserSchema.statics.build = (attrs: UserAttrs) => {
   return new User(attrs)
 }
-
 const User = mongoose.model<UserDoc, UserModel>('User', UserSchema)
 
 export { User }
+
+// Using a helper function for TS and mongoose to get along
+// Here need to export the function
+// buildUser function need to be used anytime to create a new user
+
+/*
+const buildUser = (attrs:UserAttrs) => {
+  return new User(attrs)
+}
+export {User, buildUser}
+*/
