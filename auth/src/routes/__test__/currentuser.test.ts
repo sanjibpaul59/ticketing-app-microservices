@@ -11,7 +11,7 @@ it('response with details about current user', async () => {
   //   })
   //   .expect(201)
   // const cookie = signupResponse.get('Set-Cookie')
-  const cookie = await signin()
+  const cookie = await global.signin()
 
   const response = await request(app)
     .get('/api/users/currentuser')
@@ -19,5 +19,14 @@ it('response with details about current user', async () => {
     .send()
     .expect(200)
 
-  console.log(response.body)
+  expect(response.body.currentUser.email).toEqual('test@test.com')
+})
+
+it('returns null if user is not authenticated', async () => {
+  const response = await request(app)
+    .get('/api/users/currentuser')
+    .send()
+    .expect(200)
+
+  expect(response.body.currentUser).toEqual(null)
 })
