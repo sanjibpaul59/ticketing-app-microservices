@@ -7,10 +7,10 @@ import { currentUserRouter } from './routes/currentuser'
 import { signUpRouter } from './routes/signup'
 import { signInRouter } from './routes/signin'
 import { signOutRouter } from './routes/signout'
+import { allUsersRouter } from './routes/allusers'
 
 // Middlewares
-import { errorHandler } from './middlewares/error-handlers'
-import { NotFoundError } from './errors/not-found-error'
+import { errorHandler, NotFoundError } from '@travingo/ticketing-common'
 
 const app = express()
 app.set('trust proxy', true)
@@ -26,6 +26,7 @@ app.use(currentUserRouter)
 app.use(signUpRouter)
 app.use(signInRouter)
 app.use(signOutRouter)
+app.use(allUsersRouter)
 app.all('*', async (req, res) => {
   throw new NotFoundError()
 })

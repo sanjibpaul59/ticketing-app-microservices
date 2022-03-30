@@ -1,6 +1,11 @@
 import colors from "vuetify/es5/util/colors";
 
 export default {
+    server: {
+        port: 3000, // default: 3000
+        host: "0.0.0.0", // default: localhost,
+        timing: false,
+    },
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
         titleTemplate: "%s - BUY/SELL Tickets Online",
@@ -44,7 +49,9 @@ export default {
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
         // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-        baseURL: "/",
+        baseURL: "https://ticketing-app.xyz/api",
+        credentials: false,
+        proxyHeaders: true,
     },
 
     // PWA module configuration: https://go.nuxtjs.dev/pwa

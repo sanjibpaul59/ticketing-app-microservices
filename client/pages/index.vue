@@ -1,9 +1,13 @@
 <template>
   <div>
-    <h1>Landing Page</h1>
+    <h1>টিকিট কিনুন সহজে!</h1>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    console.log(this.$store.state.userAuth.isLoggedIn);
+  },
+};
 </script>
