@@ -1,12 +1,14 @@
 <template>
   <div>
-    <h1>Home Page!</h1>
-    <h3>You are Logged In now</h3>
+    <h1>বাহ! তোমার লগইন ঠিক হইছে। তুমি ঠিক জায়গায় আসছো!</h1>
+    <h3>ঘুইরা দেখো কি কি করার আছে।</h3>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  middleware: "authentication",
+};
 </script>
 
 <style></style>

@@ -1,35 +1,51 @@
 <template>
-  <v-app dark>
-    <v-main>
-      <v-container>
-        <NavBar />
-        <Nuxt />
-      </v-container>
-    </v-main>
-
-    <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
-  </v-app>
+  <v-app-bar :clipped-left="clipped" fixed app>
+    <v-toolbar-title>
+      <nuxt-link class="display-1" to="/">{{ title }}</nuxt-link>
+    </v-toolbar-title>
+    <v-spacer />
+    <div v-if="isLoggedIn" class="d-flex">
+      <h5>{{ currentuser.username }}</h5>
+      <v-btn class="logoutBtn" text @click="userLogout">লগ আউট</v-btn>
+    </div>
+    <div v-else>
+      <nuxt-link class="mr-3" to="/login">লগইন</nuxt-link>
+      <nuxt-link to="/register">রেজিস্টার</nuxt-link>
+    </div>
+  </v-app-bar>
 </template>
 
 <script>
-import NavBar from "../components/NavBar.vue";
-
+import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "DefaultLayout",
-  components: {
-    NavBar,
-  },
   data() {
     return {
       clipped: false,
-
       fixed: false,
-
       title: "টিকিট মাষ্টার",
       decoration: "none",
     };
+  },
+  computed: {
+    ...mapGetters({
+      loggedIn: "userAuth/isLoggedIn",
+      currentUser: "userAuth/currentUser",
+    }),
+    isLoggedIn() {
+      return this.loggedIn;
+    },
+    currentuser() {
+      return this.currentUser;
+    },
+  },
+  methods: {
+    ...mapActions({
+      logOut: "userAuth/logOut",
+    }),
+    userLogout() {
+      this.logOut();
+      this.$router.push("/login");
+    },
   },
 };
 </script>
@@ -42,6 +58,14 @@ a.nuxt-link-active {
 /* exact link will show the primary color for only the exact matching link */
 a.nuxt-link-exact-active {
   color: #00c58e;
+}
+.logoutBtn {
+  font-weight: bold;
+  color: #00c58e;
+}
+.logoutBtn:hover {
+  text-decoration: none;
+  color: #006064;
 }
 
 body {

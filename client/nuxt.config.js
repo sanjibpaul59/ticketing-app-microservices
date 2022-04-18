@@ -8,8 +8,8 @@ export default {
     },
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        titleTemplate: "%s - BUY/SELL Tickets Online",
-        title: "Ticket Share",
+        titleTemplate: "%s - অনলাইনে টিকিট কিনুন/বিক্রয় করুন",
+        title: "টিকিট মাষ্টার",
         meta: [
             { charset: "utf-8" },
             { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -44,12 +44,13 @@ export default {
         "@nuxtjs/axios",
         // https://go.nuxtjs.dev/pwa
         "@nuxtjs/pwa",
+        "@nuxtjs/auth-next",
     ],
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
         // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-        baseURL: "https://ticketing-app.xyz/api",
+        baseURL: "https://ticketing-app.xyz/api/",
         credentials: false,
         proxyHeaders: true,
     },
@@ -60,6 +61,30 @@ export default {
             lang: "en",
         },
     },
+
+    // auth: {
+    //     strategies: {
+    //         local: {
+    //             endpoints: {
+    //                 login: {
+    //                     url: "/users/signin",
+    //                     method: "post",
+    //                     propertyName: "token",
+    //                 },
+    //                 register: {
+    //                     url: "/users/signup",
+    //                     method: "post",
+    //                 },
+    //                 currentUser: {
+    //                     url: "/users/currentuser",
+    //                     method: "get",
+    //                     propertyName: "currentUser",
+    //                 },
+    //             },
+    //             tokenType: "bearer",
+    //         },
+    //     },
+    // },
 
     // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
     vuetify: {
